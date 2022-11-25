@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evaluacion_2_IOT_Madariaga_Velasquez">
         <activity
+            android:name=".SegundaActividad"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
