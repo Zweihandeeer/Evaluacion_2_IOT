@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -32,14 +33,12 @@
         android:id="@+id/descripcion"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Descripción"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tilTitulo"
+        app:layout_constraintStart_toStartOf="@+id/btnbuscar"
         app:layout_constraintTop_toBottomOf="@+id/tilTitulo" />
 
 
@@ -47,22 +46,12 @@
         android:id="@+id/btnAgregar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+
         android:layout_weight="1"
         android:text="Agregar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
-
-    <Button
-        android:id="@+id/btnModificar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:text="Modificar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tilTitulo"
+        app:layout_constraintStart_toStartOf="@+id/btnbuscar"
         app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
     <Button
@@ -87,7 +76,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnModificar"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

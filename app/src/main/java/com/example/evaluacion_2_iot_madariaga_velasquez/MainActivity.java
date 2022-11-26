@@ -18,18 +18,16 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView1;
     private TextInputLayout tilTarea;
     private EditText campotarea, descripcion;
-    private Button btnadd, btnmod, btnbus;
+    private Button btnadd, btnbus;
 
-    ArrayList<String> tareas = new ArrayList<>();
+    ArrayList<String> tareas = new ArrayList<>(); // Tareas almacenará todas las filas de datos ingresadas por input.
     ArrayAdapter<String> myAdapter1;
 
-    Integer indexVal;
     String item;
 
     @Override
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         listView1 = (ListView) findViewById(R.id.listview1);
         campotarea = (EditText) findViewById(R.id.campotarea);
         btnadd = (Button) findViewById(R.id.btnAgregar);
-        btnmod = (Button) findViewById(R.id.btnModificar);
         btnbus = (Button) findViewById(R.id.btnbuscar);
         descripcion = (EditText) findViewById(R.id.descripcion);
 
@@ -80,22 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
                 campotarea.setText("");
                 descripcion.setText("");
-            }
-        });
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> AdapterView, View view, int i, long l) {
-                item = "La tarea: " + AdapterView.getItemAtPosition(i).toString() + " ha sido seleccionada.";
-                indexVal = i;
-                Toast.makeText(MainActivity.this, item, Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnmod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String stringval = campotarea.getText().toString();
-                tareas.set(indexVal, stringval);
-                myAdapter1.notifyDataSetChanged();
             }
         });
         listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
