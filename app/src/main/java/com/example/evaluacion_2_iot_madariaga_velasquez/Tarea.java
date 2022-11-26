@@ -1,3 +1,5 @@
+package com.example.evaluacion_2_iot_madariaga_velasquez;
+
 import androidx.annotation.NonNull;
 import java.io.Serializable;
 
@@ -32,5 +34,5 @@ public class Tarea implements Serializable {
         descripcion = nuevaDescripcion;
     }
 
-    public String getDescripcion(){ return descripcion; }
+    public String getDescripcion(){ return descripcion; }
 }
