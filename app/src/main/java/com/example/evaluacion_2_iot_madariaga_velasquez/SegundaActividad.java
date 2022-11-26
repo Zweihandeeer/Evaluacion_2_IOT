@@ -72,7 +72,8 @@ public class SegundaActividad extends AppCompatActivity {
                 volver();
             }
         });
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() { // Metodo que arroja un toast en cuanto se selecciona un item de la listview.
+        // Metodo que arroja un toast en cuanto se selecciona un item de la listview.
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> AdapterView, View view, int i, long l) {
                 item = "La tarea: " + AdapterView.getItemAtPosition(i).toString() + " ha sido seleccionada.";
@@ -80,7 +81,8 @@ public class SegundaActividad extends AppCompatActivity {
                 Toast.makeText(SegundaActividad.this, item, Toast.LENGTH_SHORT).show();
             }
         });
-        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { // Método que elimina el item de la listview.
+        // Método que elimina el item de la listview.
+        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 tareas.remove(i); // Se llama al método remove para remover el item del arraylist tareas.
@@ -90,19 +92,26 @@ public class SegundaActividad extends AppCompatActivity {
                 return true;
             }
         });
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() { // Modificar
+        // Modificar items de la lista
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String stringval1 = etnewtitulo.getText().toString();
                 String stringval2 = etnewdesc.getText().toString();
                 if(stringval1.isEmpty() || stringval2.isEmpty()){
-                    Toast.makeText(SegundaActividad.this, "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SegundaActividad.this, "Uno o más campos están vacíos.", Toast.LENGTH_SHORT).show();
                     return;
+                } else if (0 > stringval1.length() || stringval1.length() > 20  ) {
+                    etnewtitulo.setError("El título no puede tener más de 20 caracteres.");
+                } else if ( 0 < stringval1.length()  && stringval1.length() < 21){
+                    tareas.remove(i);
+                    tareas.add("- ID: "+ idGenerator() + ", Tarea: " + etnewtitulo.getText().toString() + ", Descripcion: " + stringval2);
+                    myAdapter1.notifyDataSetChanged();
+                    etnewtitulo.setText("");
+                    etnewdesc.setText("");
                 }
-                tareas.remove(i);
-                tareas.add("- ID: "+ idGenerator() + ", Tarea: " + etnewtitulo.getText().toString() + ", Descripcion: " + stringval2);
-                myAdapter1.notifyDataSetChanged();
+
             }
         });
         svfiltrar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

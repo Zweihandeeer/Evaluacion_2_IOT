@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         descripcion = (EditText) findViewById(R.id.descripcion);
 
         myAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tareas);
+
         listView1.setAdapter(myAdapter1);
         listView1.setVisibility(View.GONE);
     }
@@ -68,15 +69,17 @@ public class MainActivity extends AppCompatActivity {
                 String stringval2 = descripcion.getText().toString();
 
                 if(stringval1.isEmpty() || stringval2.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Uno o más campos están vacíos.", Toast.LENGTH_SHORT).show();
                     return;
+                } else if (0 > stringval1.length() || stringval1.length() > 20  ) {
+                    campotarea.setError("El título no puede tener más de 20 caracteres.");
+                } else {
+                    tareas.add("ID: " + idGenerator() + ", Tarea: " + stringval1 + ", " + stringval2);
+                    myAdapter1.notifyDataSetChanged();
+
+                    campotarea.setText("");
+                    descripcion.setText("");
                 }
-
-                tareas.add("ID: "+ idGenerator() + ", Tarea: " + stringval1 + ", " + stringval2);
-                myAdapter1.notifyDataSetChanged();
-
-                campotarea.setText("");
-                descripcion.setText("");
             }
         });
         listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
